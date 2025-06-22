@@ -13,3 +13,25 @@ body {
   margin: 0 auto;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+
+.botonera{
+  margin: auto;
+  width: 80%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.botonera button{
+  width: 100px;
+  height: 40px;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: aquamarine;
+  border-radius: 10px;
+}
+
+ul{
+  width: 80%;
+  margin: 20px auto;
+  list-style: none;
+}

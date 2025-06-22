@@ -1,7 +1,47 @@
+import React, { useState } from "react"
+import TemperatureDisplay from './components/TemperatureDisplay'
+import TemperatureControls from './components/TemperatureControls'
+import HistoryList from './components/HistoryList'
+
 export default function App() {
+  const [temp, setTemp] = useState(20)
+  const [history, setHistory] = useState([])
+  const increaseTemp = () => {
+    setTemp(temp+1)
+    addEntry(temp+1)
+  }
+  const decreaseTemp = () => {
+    setTemp(temp-1)
+    addEntry(temp-1)
+  }
+  const addEntry = (temp) => {
+    setTimeout(() => {
+      const time = new Date()
+      const newEntry = {
+        id: history.length !== 0 ? history[history.length-1].id+1 : 1,
+        date:`[${time.toLocaleTimeString('es-ES')}]`,
+        temp
+      }
+      setHistory([...history, newEntry])
+    }, 500);
+  }
+  const reset = () => {
+    setTemp(20)
+    setHistory([])
+  }
   return (
-    <div className="app">
-      <h1>Controlador de temperatura</h1>
-    </div>
+    <>
+      <div className="app">
+        <h1>Controlador de temperatura</h1>
+        <TemperatureDisplay temp={ temp }/>
+        <div className="botonera">
+          <TemperatureControls increaseTemp={increaseTemp} decreaseTemp={decreaseTemp} reset={reset}/>
+        </div>
+        <h3>Historial</h3>
+        <ul>
+          <HistoryList history={history}/>
+        </ul>
+      </div>
+    </>
   )
 }
